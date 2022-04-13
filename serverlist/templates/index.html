@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Server List</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0">
+</head>
+    
+<body>
+    <header>
+        <h1>Minecraft Server List</h1>
+        <p>This app was created using <i>Flask</i> and <i>mcstatus</i></p>
+    </header>
+    
+    <main>
+        <div class="posts">
+            {% for server in servers %}
+            <div class="post" onclick="navigator.clipboard.writeText('{{ server.ip }}'); alert('Copied IP {{ server.ip }}!');">
+                <img src="{{ server.data.favicon }}">
+
+                <div class="content">
+                    <h5>{{ server.data.version.name }}</h5>
+                    <h4 class="hover-effect"><code>{{ server.ip }}</code></h4>
+                    <h4 style="color: {{ server.color }};">{{ server.data.latency | round }} ms</h4>
+                    <h4>{{ server.data.players.online }}/{{ server.data.players.max }} online</h4>
+                    <p>{{ server.text | safe }}</p>
+                </div>
+            </div>   
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+        <p>by <a href="https://onlix.me">ONLIX</a></p>
+    </footer>
+</body>
+</html>
