@@ -4,7 +4,7 @@ import mcstatus
 app = flask.Flask(__name__, static_url_path='/')
 
 def color_codes(text: str):
-    text = text.strip(' ')
+    text = text.strip(' <>')
     num = 0
 
     codes = {
